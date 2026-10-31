@@ -4,6 +4,9 @@ source "https://rubygems.org"
 
 # gem 'zookeeper', :path => "~/zookeeper"
 
+# the fork this gem is tested against; locally: bundle config set --local local.zookeeper ../zookeeper
+gem 'zookeeper', :git => 'https://github.com/incubus/zookeeper.git', :branch => 'master'
+
 # this is the last known commit that we tested against and is passing.
 # keep closer track of this stuff to make bisecting easier and travis more
 # accurate
@@ -50,7 +53,7 @@ end
 
 group :test do
   gem 'pry'
-  gem 'rspec', '~> 3.6.0'
+  gem 'rspec', '~> 3.13'
   gem 'zk-server', '~> 1.1.4'
   gem 'test-unit', :platforms => [:ruby_22, :ruby_23, :ruby_24]
 end

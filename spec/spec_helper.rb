@@ -4,7 +4,7 @@ require 'bundler/setup'
 # not a constant so we don't pollute global namespace
 release_ops_path = File.expand_path('../../releaseops/lib', __FILE__)
 
-if File.exists?(release_ops_path)
+if File.exist?(release_ops_path)
   require File.join(release_ops_path, 'releaseops')
   ReleaseOps::SimpleCov.maybe_start
 end

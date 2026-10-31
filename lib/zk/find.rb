@@ -11,11 +11,11 @@ module ZK
 
       while p = paths.shift
         catch(:prune) do
-          yield p.dup.taint
+          yield p.dup
           next unless zk.exists?(p)
 
           zk.children(p).sort.reverse.each do |ch| 
-            paths.unshift ZK.join(p, ch).untaint
+            paths.unshift ZK.join(p, ch)
           end
         end
       end
