@@ -238,7 +238,7 @@ module ZK
             logger.debug { "going to wait up to #{timeout} sec for a @node_deletion_watcher to be assigned" }
 
             @cond.wait(timeout) 
-            raise "Timeout waiting for @node_deletion_watcher" unless @node_deletion_watcher
+            raise ZK::Exceptions::LockWaitTimeoutError, "Timeout waiting for @node_deletion_watcher" unless @node_deletion_watcher
           end
         end
         logger.debug { "ok, @node_deletion_watcher: #{@node_deletion_watcher}, going to call wait_until_blocked" }

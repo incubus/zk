@@ -33,7 +33,7 @@ module ZK
       end
         
       def self.by_code(code)
-        ERROR_MAP.fetch(code.to_i) { raise "API ERROR: no exception defined for code: #{code}" }
+        ERROR_MAP.fetch(code.to_i) { raise UnknownCode, "API ERROR: no exception defined for code: #{code}" }
       end
     end
 
@@ -63,6 +63,10 @@ module ZK
     class InvalidCallback         < KeeperException; end
     class InvalidACL              < KeeperException; end
     class AuthFailed              < KeeperException; end
+
+    # raised for a result code this library has no exception for (one a newer
+    # server added, e.g. a throttled operation)
+    class UnknownCode             < KeeperException; end
 
     class OperationTimeOut < KeeperException
       include Retryable

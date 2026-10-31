@@ -47,9 +47,7 @@ module ZK
       private
         def wrap_state_closed_error
           yield
-        rescue RuntimeError => e
-          # gah, lame error parsing here
-          raise e unless e.message == 'zookeeper handle is closed'
+        rescue Zookeeper::Exceptions::HandleClosedException
           false
         end
     end

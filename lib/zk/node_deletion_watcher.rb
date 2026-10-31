@@ -161,7 +161,8 @@ module ZK
         when ZOO_CLOSED_STATE
           raise Zookeeper::Exceptions::ConnectionClosed
         else
-          raise "Hit unexpected case in block_until_node_deleted, result was: #{@result.inspect}. #{status_string}"
+          raise ZK::Exceptions::InterruptedSessionException,
+            "Hit unexpected case in block_until_node_deleted, result was: #{@result.inspect}. #{status_string}"
         end
       end
     ensure
